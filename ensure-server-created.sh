@@ -13,13 +13,13 @@ publicdns=$(get_running_instance_dns_name)
 
 if test -z "$publicdns"
 then
-	echo "no running instance found, creating one"; create_aws_instance $> /dev/null; sleep 10; publicdns=$(get_running_instance_dns_name); echo "instance created: "${publicdns}
+	echo "no running instance found, creating one"; create_aws_instance $> /dev/null; sleep 10; publicdns=$(get_running_instance_dns_name); echo "instance created: ""${publicdns}"
 else
-echo "running instance found -" ${publicdns}
+echo "running instance found -" "${publicdns}"
 fi
 
 
-ssh -q ubuntu@${publicdns} exit
+ssh -q ubuntu@"${publicdns}" exit
 retVal=$?
 if [ $retVal -ne 0 ]; then
 	echo "ssh not working"
